@@ -1,0 +1,17 @@
+name: Docker compose test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Execute docker compose
+        run: docker-compose -f docker-compose.yml up -d
